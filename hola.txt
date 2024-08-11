@@ -1,0 +1,86 @@
+addDepartamentoToPiso(nombreDePiso: string, departamento: Departamento) {
+    const findPiso = this.piso.find((pisos) => pisos.nombre === nombreDePiso);
+    if (findPiso) {
+      findPiso.departamentos.push(departamento.nombre);
+    } else {
+      return "Error al encontrar el piso";
+    }
+  }
+
+  -------------------------------------------------------------------
+
+
+
+  class Departamento {
+  nombre: string;
+
+  constructor(nombre: string) {
+    this.nombre = nombre;
+  }
+
+  getName(): string {
+    return this.nombre;
+  }
+}
+
+class Piso {
+  nombre: string;
+  departamentos: Departamento[];
+
+  constructor(nombre: string) {
+    this.nombre = nombre;
+  }
+
+  pushDepartamento(departamento: Departamento) {
+    this.departamentos.push(departamento);
+  }
+
+  getDepartamentos() {
+    return this.departamentos;
+  }
+}
+
+class Edificio {
+  piso: Piso[];
+  departamentos?: Departamento[];
+  constructor(clasePiso: Piso[]) {
+    this.piso = clasePiso;
+  }
+
+  addDepartamentoToPiso(nombreDePiso: string, departamento: Departamento) {
+    const findPiso = this.piso.find((pisos) => pisos.nombre === nombreDePiso);
+    if (findPiso) {
+      findPiso.departamentos.push(departamento);
+    } else {
+      return "Error al encontrar el piso";
+    }
+  }
+
+  getDepartamentosByPiso(nombreDePiso: string): Departamento[] {
+    const encontrarPiso = this.piso.find(
+      (piso) => piso.nombre === nombreDePiso
+    );
+    if (encontrarPiso) {
+      return encontrarPiso.departamentos;
+    } else {
+      return [];
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+getDepartamentosByPiso(nombreDePiso: string): Departamento[] {
+    //let arrayDeDeptos = [];
+    this.pisos.forEach((pisos) => {
+      if (pisos.nombre === nombreDePiso) {
+        return pisos.departamentos;
+      }
+    });
+  }
